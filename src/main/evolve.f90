@@ -35,6 +35,9 @@ use winddata, only: sigdot_wind, sigdot_accrete
      if(planetchoice=='y') then
         ! Compute torques induced on the disc by planets
         call compute_planet_torques
+        !if(pebblechoice=='y') then
+        !   call planet_accretion
+        !endif
      endif
 
      ! Get system timestep
@@ -149,8 +152,12 @@ use winddata, only: sigdot_wind, sigdot_accrete
   !$OMP END PARALLEL
 
    if(planetchoice=='y') then
-    ! Move planets
-    call migrate_planets
+     ! Move planets
+     call migrate_planets
+     if(pebblechoice=='y') then
+        ! add mass to planets
+        call planet_accretion
+     endif
 endif
 
 !print*, t/yr,dt/yr

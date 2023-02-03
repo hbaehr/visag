@@ -28,6 +28,7 @@ allocate(lambdaI(nplanet,nmax), lambdaII(nplanet,nmax))
 allocate(fII(nplanet))
 allocate(adot(nplanet),tmig(nplanet),tmigI(nplanet))
 allocate(torquei(nplanet,nmax), torque_term(nmax), total_planet_torque(nmax))
+allocate(mdotp(nplanet))
 
 
 alive(:) = 1
@@ -43,6 +44,7 @@ tmig(:) = 0.0
 tmigI(:) = 0.0
 torquei(:,:) = 0.0
 total_planet_torque(:) = 0.0
+mdotp(:) = 0.0
 
 do iplanet=1,nplanet
    read(10,*) mp(iplanet), ap(iplanet)
@@ -58,6 +60,7 @@ call find_planets_in_disc
 do iplanet=1,nplanet
       print*, 'Planet ', iplanet, 'initially located at cell ', iplanetrad(iplanet)
       print*, 'Radius: ', rz(iplanetrad(iplanet))/AU
+      print*, 'Mass: ' , mp(iplanet)/mjup
 enddo
 
 end subroutine setup_planets

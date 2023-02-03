@@ -36,6 +36,7 @@ subroutine setup
   read(10,'(a1)') runmode ! f = fixed alpha, g=self-gravitating, Q = self-gravitating, fixed Q
   read(10,'(a1)') layerchoice ! Run this with an MRI upper layer? (y/n)
   read(10,'(a1)') planetchoice ! Add planets? (y/n)
+  read(10,'(a1)') pebblechoice ! Add pebble accretion? (y/n)
   read(10,*) planetfile ! File containing planet data
   read(10,*) alpha_visc ! If fixed alpha viscosity, define it here
   read(10,'(a)') tempchoice ! Background Temperature: f=fixed, s=stellar
@@ -58,6 +59,9 @@ subroutine setup
   read(10,*) mdot_init ! Initial accretion rate
   read(10,*) Lx       ! X Ray luminosity
   read(10,*) rremove  ! Radius at which planets are removed
+  read(10,*) metallicity      ! dust-to-gas mass ratio
+  read(10,*) pebble_fraction  ! fraction of dust that is in pebbles
+  read(10,*) pebble_size      ! dimensionless size of accreted pebbles
 
   prefix = trim(prefix)
 
@@ -108,6 +112,9 @@ endif
   write (*,101) ' - mdot   = ',mdot_init, ' solar masses / yr'
   write (*,101) ' - X Ray Luminosity = ',Lx, ' erg s-1'
   write (*,101) ' - inner cut = ',rremove, ' AU'
+  write (*,101) ' - metallicity = ',metallicity
+  write (*,101) ' - pebble fraction = ',pebble_fraction
+  write (*,101) ' - pebble size = ',pebble_size
   write(*,*) "-----------------------------------------------"
 100 format (A,I5)
 101 format (A,1PE14.3,A)
@@ -313,6 +320,7 @@ sigdot_accrete(:)= 0.0 ! Accretion turned off for now
 
   	if (rz(i).lt.rmax*AU) Then
            sigma(i) = sig_0_try*(rz(i)/AU)**(-sig_r)
+           !sigma(i) = sig_0_try*(rz(i)/AU)**(-sig_r)*DExp(-rz{i}/(r_cut*AU))
 
   	Else
            sigma(i) = sig_0_try*(rz(i)/AU)**(-sig_r)
@@ -364,7 +372,13 @@ sigdot_accrete(:)= 0.0 ! Accretion turned off for now
   if(planetchoice=='y') then
     print*, 'Setting up planets'
     call setup_planets
-endif
+ endif
+
+ if (pebblechoice=='y') then
+    print*, 'Adding pebble accretion'
+    !call calc_pebble_accretion
+ endif
+ 
   write (*,*) '--- setup completed'
 
 
