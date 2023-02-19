@@ -17,8 +17,15 @@ ax1 = fig1.add_subplot(111)
 ax1.set_ylim(amin(ap[:,:])*0.9,amax(ap[:,:])*1.1)
 
 for i in range(nplanet):
-    ax1.plot(time,ap[i,:], label='Planet '+str(i+1))
+    ax1.plot(time,ap[i,:], label='Planet '+str(i+1), linewidth=2)
 
+ax1.spines['top'].set_linewidth(2)
+ax1.spines['bottom'].set_linewidth(2)
+ax1.spines['left'].set_linewidth(2)
+ax1.spines['right'].set_linewidth(2)
+ax1.tick_params(axis='both', which='major', length=4, width=2)
+ax1.tick_params(axis='both', which='minor', length=3, width=1.5)
+    
 ax1.set_ylabel('Semimajor axis (AU)',fontsize=22)
 ax1.set_xlabel('Time (yr)',fontsize=22)
 ax1.legend()
@@ -33,12 +40,43 @@ ax2.set_ylim(amin(abs(tmig[:,:]))*0.9,amax(abs(tmig[:,:]))*1.1)
 #ax2.set_yscale('log')
 
 for i in range(nplanet):
-    ax2.plot(time,abs(tmig[i,:]), label='Planet '+str(i+1))
+    ax2.plot(time,abs(tmig[i,:]), label='Planet '+str(i+1), linewidth=2)
 
+ax2.spines['top'].set_linewidth(2)
+ax2.spines['bottom'].set_linewidth(2)
+ax2.spines['left'].set_linewidth(2)
+ax2.spines['right'].set_linewidth(2)
+ax2.tick_params(axis='both', which='major', length=4, width=2)
+ax2.tick_params(axis='both', which='minor', length=3, width=1.5)
+    
 ax2.set_ylabel('Migration Timescale (yr)',fontsize=22)
 ax2.set_xlabel('Time (yr)',fontsize=22)
 ax2.set_yscale('log')
 ax2.legend()
+
+
+# Migration Timescale
+fig3 = plt.figure()
+ax3 = fig3.add_subplot(111)
+
+ax3.set_ylim(amin(abs(mp[:,:]))*0.9,amax(abs(mp[:,:]))*1.1)
+#ax2.set_yscale('log')
+
+for i in range(nplanet):
+    ax3.plot(time,abs(mp[i,:]), label='Planet '+str(i+1), linewidth=2)
+
+ax3.spines['top'].set_linewidth(2)
+ax3.spines['bottom'].set_linewidth(2)
+ax3.spines['left'].set_linewidth(2)
+ax3.spines['right'].set_linewidth(2)
+ax3.tick_params(axis='both', which='major', length=4, width=2)
+ax3.tick_params(axis='both', which='minor', length=3, width=1.5)
+    
+ax3.set_ylabel(r'Planet Mass ($M_{Jup}$)',fontsize=22)
+ax3.set_xlabel('Time (yr)',fontsize=22)
+ax3.set_yscale('log')
+ax3.legend()
+
 
 
 plt.show()

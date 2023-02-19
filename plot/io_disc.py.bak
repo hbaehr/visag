@@ -109,11 +109,11 @@ def read_profile(profilefile):
     time = arr[0]
     ngrid = int(arr[1])    
     
-    print('Reading file ',profilefile)
-    print('Time: '+str(time)+ ' yr')
+    print 'Reading file ',profilefile
+    print 'Time: '+str(time)+ ' yr'
     
     profdata = np.genfromtxt(profilefile,skip_header=1)
-    profdata.reshape(profdata.size // nprofcol,nprofcol)
+    profdata.reshape(profdata.size/nprofcol,nprofcol)
 
     return time, profdata
 
@@ -130,8 +130,8 @@ def read_planets(planetfile,verbose=True):
     nactive = int(arr[2])
     
     if(verbose):
-        print('Number of planets: ',nplanet)
-        print('Those of which are active: ',nactive)
+        print 'Number of planets: ',nplanet
+        print 'Those of which are active: ',nactive
     
     active = np.zeros(nplanet)
     mp = np.zeros(nplanet)
@@ -148,7 +148,7 @@ def read_planets(planetfile,verbose=True):
         tmig[i] = arr[3]
     
         if(verbose):
-            print(active[i],mp[i],ap[i],tmig[i])
+            print active[i],mp[i],ap[i],tmig[i]
 
     return time,nplanet,nactive, active,mp,ap,tmig
 
@@ -189,20 +189,20 @@ def plot_profile_multifiles_variable(prefix, add_planets=False):
     filenames = ff.find_sorted_local_input_fileset(prefix+"*profile*")
     nfiles = len(filenames)
 
-    initial = eval(input('Starting filenumber? '))
-    final = eval(input('Final filenumber? '))
+    initial = input('Starting filenumber? ')
+    final = input('Final filenumber? ')
 
-    print('Now select variable to plot: here are the choices')
+    print 'Now select variable to plot: here are the choices'
 
     for i in range(len(profilekeys)):
-        print(str(i+1)+': '+profilekeys[i])
+        print str(i+1)+': '+profilekeys[i]
 
-    var = eval(input('Which variable (1-'+str(len(profilekeys))+')? '))
+    var = input('Which variable (1-'+str(len(profilekeys))+')? ')
 
     var = var-1
 
     if(final>nfiles):
-        print("Limiting count to available files")
+        print "Limiting count to available files"
         final = nfiles
 
     fig1 = plt.figure()
@@ -251,7 +251,7 @@ def plot_profile_multifiles_variable(prefix, add_planets=False):
 
         outputfile =profilekeys[var]+'_'+filenames[i]+'.png'
 
-        print('Saving to ',outputfile)
+        print 'Saving to ',outputfile
         plt.savefig(outputfile, format='png')
         ax.clear()
 
@@ -288,7 +288,7 @@ def plot_profile_data_planets(profilefile,planetfile):
     t,nplanet,nactive,active,mp,ap,tmig = read_planets(planetfile)
 
     if(np.abs(time-t)>1.0e-30):
-        print("Warning: times of profile/planet files don't match")
+        print "Warning: times of profile/planet files don't match"
     
     # Set up plot data for multigraph function
     
@@ -317,7 +317,7 @@ def plot_profile_data_planets(profilefile,planetfile):
 
     planetsizes,planetcolours = get_planet_size_and_colour(nplanet,mp)
 
-    print(ap, ypoints, planetcolours)
+    print ap, ypoints, planetcolours
     multigraph_legend_points(profdata,nprofcol,profilexlabel,profilelabels,profileylog,profileymin,profileymax,profileoutputstring,legendstring,ap,ypoints,planetsizes,planetcolours)
 
     return time,profdata,nplanet,nactive,active,mp,ap

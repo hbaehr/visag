@@ -8,7 +8,7 @@ import io_disc as io
 import filefinder as ff
 
 
-prefix = input("Please enter the file prefix: ")
+prefix = raw_input("Please enter the file prefix: ")
 
 logfile = ff.find_sorted_local_input_files(prefix+"*.log")
 
@@ -18,4 +18,4 @@ logfile = ff.find_sorted_local_input_files(prefix+"*.log")
 
 logdata = io.plot_log_data(logfile)
 
-print('Plotting complete for file ',logfile)
+print 'Plotting complete for file ',logfile

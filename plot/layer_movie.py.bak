@@ -6,9 +6,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # Input parameters
-prefix = input('What is the file prefix? ')
-initial = eval(input('Starting filenumber? '))
-nfiles = eval(input('Final filenumber? '))
+prefix = raw_input('What is the file prefix? ')
+initial = input('Starting filenumber? ')
+nfiles = input('Final filenumber? ')
 
 nprofcol=10
 nlayercol=11
@@ -43,7 +43,7 @@ for i in range(initial,nfiles):
     layerfile=prefix+'layer.'+str(i+1)
 
     # Read data
-    print('Reading file ',layerfile)
+    print 'Reading file ',layerfile
     layer = np.genfromtxt(layerfile,skip_header=1)
     nrow = layer.size/nlayercol
     layer.reshape(nrow,nlayercol)

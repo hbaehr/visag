@@ -8,7 +8,7 @@ import filefinder as ff
 prefix = ff.get_file_prefix('*.log')
 
 # Input parameters
-planets = input('Add planets? (y/n) ')
+planets = raw_input('Add planets? (y/n) ')
 
 add_planets = False
 if('y' in planets or 'Y' in planets):

@@ -8,8 +8,8 @@ import numpy as np
 nlayercol=11
 nlogcol = 10
 
-prefix = input('What is the file prefix? ')
-fileno = eval(input('Which dump is to be plotted? '))
+prefix = raw_input('What is the file prefix? ')
+fileno = input('Which dump is to be plotted? ')
 
 # Input parameters
 
@@ -24,7 +24,7 @@ logdata = np.genfromtxt(logfile)
 
 time = logdata[fileno-1,0]
 
-print('Time is ',time ,' years')
+print 'Time is ',time ,' years'
 
 # Open profile file and read
 
@@ -57,7 +57,7 @@ for i in range(nlayercol):
 # Now generate layer plots
 
 for i in range(1,nlayercol):
-    print('Plotting ',outputstring[i])
+    print 'Plotting ',outputstring[i]
     fig1 = plt.figure()
     ax = fig1.add_subplot(111)
     ax.set_xlabel(ylabels[0])
@@ -69,7 +69,7 @@ for i in range(1,nlayercol):
         ax.set_yscale('log')
     
     if ymin[i]!=ymax[i]:
-        print('Setting limits ',ymin[i],ymax[i])
+        print 'Setting limits ',ymin[i],ymax[i]
         ax.set_ylim(ymin[i],ymax[i])
     
     line = ax.plot(layerdata[:,0],layerdata[:,i], label='Time = '+str(time)+'yr')
@@ -80,7 +80,7 @@ for i in range(1,nlayercol):
 
 # Finish layer plots
 
-print('Plotting complete for file ',layer)
+print 'Plotting complete for file ',layer
 
 # Now plot log data
 
@@ -102,7 +102,7 @@ for i in range(nlogcol):
     ymax.append(0.0)
 
 for i in range(1,nlogcol):
-    print('Plotting ',outputstring[i])
+    print 'Plotting ',outputstring[i]
     fig1 = plt.figure()
     ax = fig1.add_subplot(111)
     ax.set_xlabel(ylabels[0])
@@ -114,7 +114,7 @@ for i in range(1,nlogcol):
         ax.set_yscale('log')
     
     if ymin[i]!=ymax[i]:
-        print('Setting limits ',ymin[i],ymax[i])
+        print 'Setting limits ',ymin[i],ymax[i]
         ax.set_ylim(ymin[i],ymax[i])
     
     line = ax.plot(logdata[:,0],logdata[:,i])
@@ -124,7 +124,7 @@ for i in range(1,nlogcol):
 
 # Extra plots outside of the loop: plot mdot vs sigmax for grav and MRI layers
 
-print('Plotting mdot vs sigma for grav layer')
+print 'Plotting mdot vs sigma for grav layer'
 
 fig1 = plt.figure()
 ax = fig1.add_subplot(111)
@@ -138,7 +138,7 @@ line = ax.scatter(logdata[:,4],logdata[:,8])
 outputfile = 'mdot_vs_sigma_grav.ps'    
 plt.savefig(outputfile, format='ps')
 
-print('Plotting mdot vs sigma for MRI layer')
+print 'Plotting mdot vs sigma for MRI layer'
 
 figmag = plt.figure()
 ax = figmag.add_subplot(111)
@@ -154,4 +154,4 @@ plt.savefig(outputfile, format='ps')
 plt.show()
 # Finish layer plots
 
-print('Plotting complete for file ',logfile)
+print 'Plotting complete for file ',logfile

@@ -21,7 +21,7 @@ profilefile = ff.find_sorted_local_input_files(prefix+'*profile*')
 fileno = profilefile.rsplit('.',1)[1]
 
 #layerchoice = raw_input('Plot layer data? (y/n) ')
-planetchoice = input('Plot planet data? (y/n) ')
+planetchoice = raw_input('Plot planet data? (y/n) ')
 
 #use_layer = True
 use_planet = True

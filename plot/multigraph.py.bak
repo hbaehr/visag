@@ -16,12 +16,12 @@ def multigraph(data,nplots,xlabel, ylabels,setylog,ymin,ymax,outputstring):
     # ymin, ymax - arrays describing axis limits
     # outputstring - string determining the filenames to be outputted
 
-    print('Calling multigraph function')
+    print 'Calling multigraph function'
     
     # Begin plotting loop
 
     for i in range(1,nplots):
-        print('Plotting ',outputstring[i])
+        print 'Plotting ',outputstring[i]
         fig1 = plt.figure()
         ax = fig1.add_subplot(111)
         ax.set_xlabel(ylabels[0])    
@@ -34,7 +34,7 @@ def multigraph(data,nplots,xlabel, ylabels,setylog,ymin,ymax,outputstring):
             ax.set_yscale('log')
     
         if ymin[i]!=ymax[i]:
-            print('Setting limits ',ymin[i],ymax[i])
+            print 'Setting limits ',ymin[i],ymax[i]
             ax.set_ylim(ymin[i],ymax[i])
     
         ax.plot(data[:,0],data[:,i])
@@ -42,7 +42,7 @@ def multigraph(data,nplots,xlabel, ylabels,setylog,ymin,ymax,outputstring):
         plt.savefig(outputfile, format='png')
 
     # Finish profile plots
-    print('Multigraph call complete')
+    print 'Multigraph call complete'
     
 def multigraph_legend(data,nplots,xlabel, ylabels,setylog,ymin,ymax,outputstring,legendstring):
     '''Plots multiple graphs from 2D arrays with a specified legend '''
@@ -58,12 +58,12 @@ def multigraph_legend(data,nplots,xlabel, ylabels,setylog,ymin,ymax,outputstring
     # outputstring - string determining the filenames to be outputted
     # legendstring - string determining the legends for each plot
 
-    print('Calling multigraph_legend function')
+    print 'Calling multigraph_legend function'
     
     # Begin plotting loop
 
     for i in range(1,nplots):
-        print('Plotting ',outputstring[i])
+        print 'Plotting ',outputstring[i]
         fig1 = plt.figure()
         ax = fig1.add_subplot(111)
         ax.set_xlabel(ylabels[0])
@@ -76,7 +76,7 @@ def multigraph_legend(data,nplots,xlabel, ylabels,setylog,ymin,ymax,outputstring
             ax.set_yscale('log')
     
         if ymin[i]!=ymax[i]:
-            print('Setting limits ',ymin[i],ymax[i])
+            print 'Setting limits ',ymin[i],ymax[i]
             ax.set_ylim(ymin[i],ymax[i])
     
         ax.plot(data[:,0],data[:,i], label=legendstring[i])
@@ -85,7 +85,7 @@ def multigraph_legend(data,nplots,xlabel, ylabels,setylog,ymin,ymax,outputstring
         plt.savefig(outputfile, format='png')
 
     # Finish profile plots
-    print('Multigraph_legend call complete')
+    print 'Multigraph_legend call complete'
     
 def multigraph_legend_points(data,nplots,xlabel,ylabels,setylog,ymin,ymax,outputstring,legendstring, xpoints,ypoints,sizepoints,pointcolours):
     '''Plots multiple graphs from 2D arrays with a specified legend with extra points added (circle patch)'''
@@ -104,13 +104,13 @@ def multigraph_legend_points(data,nplots,xlabel,ylabels,setylog,ymin,ymax,output
     # ypoints - y locations of circles
     # sizepoints - sizes of circles 
 
-    print('Calling multigraph_legend_with_points function')
+    print 'Calling multigraph_legend_with_points function'
     
     # Begin plotting loop
 
     
     for i in range(1,nplots):
-        print('Plotting ',outputstring[i])
+        print 'Plotting ',outputstring[i]
         fig1 = plt.figure()
         ax = fig1.add_subplot(111)
         ax.set_xlabel(ylabels[0])
@@ -123,7 +123,7 @@ def multigraph_legend_points(data,nplots,xlabel,ylabels,setylog,ymin,ymax,output
             ax.set_yscale('log')
     
         if ymin[i]!=ymax[i]:
-            print('Setting limits ',ymin[i],ymax[i])
+            print 'Setting limits ',ymin[i],ymax[i]
             ax.set_ylim(ymin[i],ymax[i])
                 
         ax.plot(data[:,0],data[:,i], label=legendstring[i])
@@ -137,4 +137,4 @@ def multigraph_legend_points(data,nplots,xlabel,ylabels,setylog,ymin,ymax,output
         plt.savefig(outputfile, format='png')
 
     # Finish profile plots
-    print('Multigraph_legend_with_points call complete')
+    print 'Multigraph_legend_with_points call complete'
