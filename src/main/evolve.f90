@@ -155,8 +155,12 @@ use winddata, only: sigdot_wind, sigdot_accrete
      ! Move planets
      call migrate_planets
      if(pebblechoice=='y') then
-        ! add mass to planets
+        ! add pebble accretion to planets
         call planet_accretion
+     endif
+     if(gasaccretion=='y') then
+        ! add gas accretion to planets
+        call planet_gas_accretion
      endif
 endif
 

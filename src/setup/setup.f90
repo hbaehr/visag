@@ -33,10 +33,11 @@ subroutine setup
   open (unit=10,file=paramfile,form='formatted',status='old')
 
   read(10,*) prefix  ! File output prefix
-  read(10,'(a1)') runmode ! f = fixed alpha, g=self-gravitating, Q = self-gravitating, fixed Q
+  read(10,'(a1)') runmode ! f = fixed alpha, g=self-gravitating, Q = self-gravitating, fixed Q, initial profile
   read(10,'(a1)') layerchoice ! Run this with an MRI upper layer? (y/n)
   read(10,'(a1)') planetchoice ! Add planets? (y/n)
   read(10,'(a1)') pebblechoice ! Add pebble accretion? (y/n)
+  read(10,'(a1)') gasaccretion ! Add gas accretion to planets? (y/n)
   read(10,*) planetfile ! File containing planet data
   read(10,*) alpha_visc ! If fixed alpha viscosity, define it here
   read(10,'(a)') tempchoice ! Background Temperature: f=fixed, s=stellar
@@ -339,6 +340,10 @@ sigdot_accrete(:)= 0.0 ! Accretion turned off for now
 
   enddo
 
+  !if(runmode=='q') then
+  !   sigma(i) = sigma_ref*(rz(i)/AU)**(-sig_r)
+  !endif
+
   sigma_tot(:) = sigma(:)
   mdisk = mdisk*solarmass
   rmax = rmax*AU
@@ -377,6 +382,10 @@ sigdot_accrete(:)= 0.0 ! Accretion turned off for now
  if (pebblechoice=='y') then
     print*, 'Adding pebble accretion'
     !call calc_pebble_accretion
+ endif
+
+ if (gasaccretion=='y') then
+    print*, 'Adding gas accretion'
  endif
  
   write (*,*) '--- setup completed'
