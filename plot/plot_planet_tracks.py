@@ -55,12 +55,13 @@ ax2.set_yscale('log')
 ax2.legend()
 
 
-# Migration Timescale
+
+# Planet mass
 fig3 = plt.figure()
 ax3 = fig3.add_subplot(111)
 
 ax3.set_ylim(amin(abs(mp[:,:]))*0.9,amax(abs(mp[:,:]))*1.1)
-#ax2.set_yscale('log')
+ax3.set_yscale('log')
 
 for i in range(nplanet):
     ax3.plot(time,abs(mp[i,:]), label='Planet '+str(i+1), linewidth=2)
@@ -76,6 +77,31 @@ ax3.set_ylabel(r'Planet Mass ($M_{Jup}$)',fontsize=22)
 ax3.set_xlabel('Time (yr)',fontsize=22)
 ax3.set_yscale('log')
 ax3.legend()
+
+
+
+# Evolution tracks
+fig4 = plt.figure()
+ax4 = fig4.add_subplot(111)
+
+ax4.set_ylim(amin(abs(mp[:,:]))*0.9,amax(abs(mp[:,:]))*1.1)
+#ax4.set_xlim(amin(ap[:,:])*0.9,amax(ap[:,:])*1.1)
+ax4.set_yscale('log')
+
+for i in range(nplanet):
+    ax4.plot(ap[i,:],abs(mp[i,:]), label='Planet '+str(i+1), linewidth=2)
+
+ax4.spines['top'].set_linewidth(2)
+ax4.spines['bottom'].set_linewidth(2)
+ax4.spines['left'].set_linewidth(2)
+ax4.spines['right'].set_linewidth(2)
+ax4.tick_params(axis='both', which='major', length=4, width=2)
+ax4.tick_params(axis='both', which='minor', length=3, width=1.5)
+
+ax4.set_ylabel(r'Planet Mass ($M_{Jup}$)',fontsize=22)
+ax4.set_xlabel('Radius (AU)',fontsize=22)
+ax4.set_yscale('log')
+ax4.legend()
 
 
 

@@ -1,6 +1,9 @@
 *.ps
 *.o
 *.mod
+*.png
 visag
 plot/*.pyc
+plot/*.bak
 *~
+accr_debug*

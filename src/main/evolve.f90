@@ -93,6 +93,11 @@ use winddata, only: sigdot_wind, sigdot_accrete
 
         vr = -3.0*(term2)/(rf(i)*sigma(i))
 
+        !print*, "i: ", i
+        !print*, "vr: ", vr
+        !print*, "term1: ", term1
+        !print*, "term2: ", term2
+
         dTcdr = (Tc(i+1) -Tc(i))*drzm1(i)   
 
         !if(t> 2.0*yr) then
@@ -156,13 +161,13 @@ use winddata, only: sigdot_wind, sigdot_accrete
      call migrate_planets
      if(pebblechoice=='y') then
         ! add pebble accretion to planets
-        call planet_accretion
+        call planet_solid_accretion
      endif
      if(gasaccretion=='y') then
         ! add gas accretion to planets
         call planet_gas_accretion
      endif
-endif
+  endif
 
 !print*, t/yr,dt/yr
 !if(t>2.0*yr) STOP
